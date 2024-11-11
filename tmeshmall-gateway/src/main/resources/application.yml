@@ -1,0 +1,150 @@
+#server:
+#  address: 0.0.0.0
+#  port: 88
+
+spring:
+#  application:
+#    name: tmeshmall-gateway
+#  main:
+#    web-application-type: reactive
+  zipkin:
+    # zipkin服务器的地址
+    base-url: http://127.0.0.1:9411/
+    # 关闭服务发现，否则Springcloud会把zipkin当做服务名称
+    discovery-client-enabled: false
+    # 数据传输方式
+    sender:
+      type: web
+  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#    sentinel:
+#      transport:
+#        # 应用开启端口，接收dashboard限流规则，如果被占用会默认+1
+#        port: 8719
+#        # 控制台ip:port
+#        dashboard: 127.0.0.1:8858
+
+    gateway:
+      routes:
+        - id: test_rout
+          uri: https://www.baidu.com
+          predicates:
+            - Query=url,baidu
+
+        - id: qq_route
+          uri: https://www.qq.com
+          predicates:
+            - Query=url,qq
+
+        - id: product_route
+          uri: lb://tmeshmall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        - id: coupon_route
+          uri: lb://tmeshmall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: third_party_route
+          uri: lb://tmeshmall-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>/?.*), /$\{segment}
+
+        - id: member_route
+          uri: lb://tmeshmall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: ware_route
+          uri: lb://tmeshmall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: order_route
+          uri: lb://tmeshmall-order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
+
+        - id: tmeshmall_search_route
+          uri: lb://tmeshmall-search
+          predicates:
+            - Host=search.tmesh.cn
+
+        - id: tmeshmall_auth_route
+          uri: lb://tmeshmall-auth-server
+          predicates:
+            - Host=auth.tmesh.cn
+
+        - id: tmeshmall_cart_route
+          uri: lb://tmeshmall-cart
+          predicates:
+            - Host=cart.tmesh.cn
+
+        - id: tmeshmall_order_route
+          uri: lb://tmeshmall-order
+          predicates:
+            - Host=order.tmesh.cn
+
+        - id: tmeshmall_member_route
+          uri: lb://tmeshmall-member
+          predicates:
+            - Host=member.tmesh.cn
+
+        - id: tmeshmall_seckill_route
+          uri: lb://tmeshmall-seckill
+          predicates:
+            - Host=seckill.tmesh.cn
+
+        - id: tmeshmall_host_route
+          uri: lb://tmeshmall-product
+          predicates:
+            - Host=tmesh.cn,item.tmesh.cn,**.tmesh.cn
+
+## 前端项目，/api
+## http://localhost:88/api/captcha.jpg   http://localhost:8080/renren-fast/captcha.jpg
+## http://localhost:88/api/product/category/list/tree http://localhost:8084/product/category/list/tree
+
+#暴露所有端点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+
+## 开启日志
+#logging:
+#  group:
+#    tomcat: org.apache.catalina,org.apache.coyote,org.apache.tomcat
+#  level:
+##    com.baomidou.example.mapper: debug
+#    com.tmesh.tmeshmall: debug
+#    org.springframework: debug
+#    # feign调用日志，链路日志
+#    org.springframework.cloud.openfeign: debug
+#    root: debug
+#    tomcat: info
+#    web: info
+#  file:
+#    name: ./tmeshmall-logs/gateway.log

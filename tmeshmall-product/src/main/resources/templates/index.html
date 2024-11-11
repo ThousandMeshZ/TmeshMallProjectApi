@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TMesh商城</title>
+  <link rel="stylesheet" href="/static/index/css/swiper-3.4.2.min.css">
+  <link rel="stylesheet" href="/static/index/css/GL.css">
+  <link rel="stylesheet" href="/static/index/css/J_cart.css">
+  <link rel="stylesheet" href="../static/index/css/layui-v2.9.14.css">
+  <script src="/static/index/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/index/js/jquery.cookie-1.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+  <script src="/static/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+  <script src="/static/index/js/swiper-3.4.2.min.js"></script>
+
+</head>
+
+<body>
+<div class="top_find">
+  <div class="top_find_son">
+    <img src="/static/index/img/top_find_logo.png" alt="">
+    <div class="input_find">
+      <input type="text" placeholder="卸妆水" />
+      <span style="background: url('/static/index/img/img_12.png') 0 -1px;"></span>
+      <a href="javaScript:void(0);"><img src="/static/index/img/img_09.png" /></a>
+    </div>
+  </div>
+</div>
+<ul class="left_floor">
+  <li class="left_floor_xiang">享品质</li>
+  <li class="left_floor_fu">服饰美妆</li>
+  <li class="left_floor_jia">家电手机</li>
+  <li class="left_floor_dian">电脑数码</li>
+  <li class="left_floor_3C">3C运动</li>
+  <li class="left_floor_ai">爱吃</li>
+  <li class="left_floor_mu">母婴家居</li>
+  <li class="left_floor_tu">图书汽车</li>
+  <li class="left_floor_you">游戏金融</li>
+  <li class="left_floor_lv">旅行健康</li>
+  <li class="left_floor_hai">还没逛够</li>
+  <li class="left_floor_ding">顶部</li>
+</ul>
+<header>
+  <div class="head">
+    <a href="javaScript:void(0);"><img src="/static/index/img/img_01.png" /></a>
+    <p>X</p>
+  </div>
+  <!--头部-->
+  <div class="header_head">
+    <div class="header_head_box">
+      <a href="javaScript:void(0);" class="img"><img src="/static/index/img/logo.jpg" /></a>
+      <b class="header_head_p">
+        <a href="javaScript:void(0);">
+          <img src="/static/index/img/img_05.png" style="border-radius: 50%;"/>
+          <span id="area_name" class="area_name glyphicon glyphicon-map-marker"></span>
+        </a>
+        <div class="header_head_p_cs">
+          <a href="javaScript:void(0);" class="select_area" style="background: #C81623;color: #fff;">北京</a>
+          <a href="javaScript:void(0);">上海</a>
+          <a href="javaScript:void(0);">天津</a>
+          <a href="javaScript:void(0);">重庆</a>
+          <a href="javaScript:void(0);">河北</a>
+          <a href="javaScript:void(0);">山西</a>
+          <a href="javaScript:void(0);">河南</a>
+          <a href="javaScript:void(0);">辽宁</a>
+          <a href="javaScript:void(0);">吉林</a>
+          <a href="javaScript:void(0);">黑龙江</a>
+          <a href="javaScript:void(0);">内蒙古</a>
+          <a href="javaScript:void(0);">江苏</a>
+          <a href="javaScript:void(0);">山东</a>
+          <a href="javaScript:void(0);">安徽</a>
+          <a href="javaScript:void(0);">浙江</a>
+          <a href="javaScript:void(0);">福建</a>
+          <a href="javaScript:void(0);">湖北</a>
+          <a href="javaScript:void(0);">湖南</a>
+          <a href="javaScript:void(0);">广东</a>
+          <a href="javaScript:void(0);">广西</a>
+          <a href="javaScript:void(0);">江西</a>
+          <a href="javaScript:void(0);">四川</a>
+          <a href="javaScript:void(0);">海南</a>
+          <a href="javaScript:void(0);">贵州</a>
+          <a href="javaScript:void(0);">云南</a>
+          <a href="javaScript:void(0);">西藏</a>
+          <a href="javaScript:void(0);">陕西</a>
+          <a href="javaScript:void(0);">甘肃</a>
+          <a href="javaScript:void(0);">青海</a>
+          <a href="javaScript:void(0);">宁夏</a>
+          <a href="javaScript:void(0);">新疆</a>
+          <a href="javaScript:void(0);">港澳</a>
+          <a href="javaScript:void(0);">台湾</a>
+          <a href="javaScript:void(0);">钓鱼岛</a>
+          <a href="javaScript:void(0);">海外</a>
+        </div>
+      </b>
+      <ul>
+        <li>
+          <a th:if="${session.loginUser != null}" href="http://member.tmesh.cn/memberInfo.html">欢迎, [[${session.loginUser.nickname}]]</a>
+          <a th:if="${session.loginUser == null}" href="http://auth.tmesh.cn/login.html">你好，请登录</a>
+        </li>
+        <li>
+          <a th:if="${session.loginUser == null}" href="http://auth.tmesh.cn/reg.html" class="li_2">免费注册</a>
+        </li>
+        <span>|</span>
+        <li>
+          <a href="http://member.tmesh.cn/memberOrder.html">我的订单</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+  <!--搜索导航-->
+  <div class="header_sous">
+    <div class="header_form">
+      <input id="searchText" type="text" placeholder="" onkeydown="search()"/>
+      <span style="background: url('/static/index/img/img_12.png') 0 -1px;"></span>
+      <!--<button><i class="glyphicon"></i></button>-->
+      <a href="javascript:search()" ><img src="/static/index/img/img_09.png" onclick="search()" /></a>
+    </div>
+    <div class="header_ico">
+      <div class="header_gw">
+        <img src="/static/index/img/img_15.png" />
+        <span th:if="${session.loginUser != null}"><a href="http://cart.tmesh.cn/cart.html">我的购物车</a></span>
+        <span th:if="${session.loginUser == null}"><a href="http://auth.tmesh.cn/login.html">我的购物车</a></span>
+        <span th:id="cartCount" th:if="${cartList != null && cartList.size() == 0}">0</span>
+        <span th:id="cartCount" th:if="${cartList != null && cartList.size() > 0}" th:text="${cartList.size()}"></span>
+      </div>
+      <div class="header_ko">
+        <p th:if="${cartList == null && session.loginUser == null}"><a href="http://auth.tmesh.cn/login.html">请先登录</a></p>
+        <p th:if="${cartList == null && session.loginUser != null}">购物车中还没有商品，赶紧选购吧！</p>
+        <p th:if="${cartList != null && cartList.size() == 0 && session.loginUser != null}">购物车中还没有商品，赶紧选购吧！</p>
+        <div class="cart_bd J_cart_bd" th:if="${cartList != null && cartList.size() >= 0 && session.loginUser != null}">
+          <ul class="cart_giftlist" th:id="${cart.getSkuId()}" th:each="cart : ${cartList}">
+            <li class="cart_item">
+              <div class="cart_item_inner">
+                <div class="cart_img">
+                  <a class="cart_img_lk" th:href="|http://item.tmesh.cn/${cart.getSkuId()}.html|" style="color: #666;text-decoration: none;" target="_blank">
+                    <img th:src="${cart.getImage()}" width="50" height="50" alt="">
+                  </a>
+                </div>
+                <div class="cart_name">
+                  <a class="cart_name_lk" th:href="|http://item.tmesh.cn/${cart.getSkuId()}.html|" th:title="${cart.getTitle()}" th:text="${cart.getTitle()}" style="color: #666;text-decoration: none;" target="_blank">迪奥DIOR锁定红唇礼盒(口红丝绒999+气垫0N)化妆品生日礼物送女友</a>
+                </div>
+                <div class="cart_info">
+                  <div class="cart_price" th:text="${'¥' + #numbers.formatDecimal(cart.getPrice(),0,2) + '×' + cart.getCount()}">¥1080.00×1</div>
+                  <a class="cart_delete J_delete" style="color: #666;text-decoration: none;" th:data-id="${cart.getSkuId()}" data-method="RemoveProduct" data-type="" th:href="|javascript:deleteCartItem(${session.loginUser.getId()}, ${cart.getSkuId()});|">删除</a>
+                </div>
+                <!--<div class="cart_gift">
+                  <a class="cart_gift_lk" href="//item.jd.com/100081396744.html" target="_blank">[赠品] 迪奥(DIOR)经典花纹多用乳霜 3ml(非卖品)</a>
+                </div>-->
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="header_form_nav">
+      <ul>
+        <li>
+          <a href="javaScript:void(0);" class="aaaaa">满999减300</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">金立S11</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">农用物资</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">保暖特惠</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">洗衣机节</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">七度空间卫生巾</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">自动波箱油</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">超市</a>
+        </li>
+      </ul>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="javaScript:void(0);">秒杀</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">优惠券</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">闪购</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">拍卖</a>
+        </li>
+      </ul>
+      <div class="spacer">|</div>
+      <ul>
+        <li>
+          <a href="javaScript:void(0);">服饰</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">超市</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">生鲜</a>
+        </li>
+        <li>
+          <a href="javaScript:void(0);">全球购</a>
+        </li>
+      </ul>
+      <div class="spacer">|</div>
+      <ul>
+        <li>
+          <a href="javaScript:void(0);">金融</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="right">
+      <a href="javaScript:void(0);"><img src="/static/index/img/img_21.png" /></a>
+    </div>
+  </div>
+  <!--轮播主体内容-->
+  <div class="header_main">
+    <div class="header_banner">
+      <div class="header_main_left">
+        <ul>
+          <li th:each=" category : ${categories}">
+            <a th:href="'http://search.tmesh.cn/list.html?catalog3Id='+${category.catId}" class="header_main_left_a" th:attr="ctg-data=${category.catId}"><b th:text="${category.name}">家用电器</b></a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="header_main_center">
+        <div class="swiper-container swiper1">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="javaScript:void(0);"><img src="/static/index/img/lunbo.png" /></a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="javaScript:void(0);"><img src="/static/index/img/lunbo3.png" /></a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="javaScript:void(0);"><img src="/static/index/img/lunbo6.png" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href="javaScript:void(0);"><img src="/static/index/img/lunbo7.png" /></a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next swiper-button-white"></div>
+          <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+        <div class="header_main_center_b">
+          <a href="javaScript:void(0);"><img src="/static/index/img/5a13bf0bNe1606e58.jpg" /></a>
+          <a href="javaScript:void(0);"><img src="/static/index/img/5a154759N5385d5d6.jpg" /></a>
+        </div>
+      </div>
+      <div class="header_main_right">
+        <div class="header_main_right_user">
+          <div class="user_info">
+            <div class="user_info_tou">
+              <a href="javaScript:void(0);"><img class="" src="/static/index/img/touxiang.png"></a>
+            </div>
+            <div class="user_info_show">
+              <p class="">
+                <a th:if="${session.loginUser == null}">Hi, 欢迎来到!</a>
+                <a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.nickname}]]</a>
+              </p>
+              <p>
+                <a th:if="${session.loginUser == null}" href="http://auth.tmesh.cn/login.html">你好，请登录</a>
+                <a th:if="${session.loginUser == null}" href="http://auth.tmesh.cn/reg.html" class="">注册</a>
+              </p>
+            </div>
+          </div>
+          <div class="user_info_hide">
+            <a href="javaScript:void(0);">新人福利</a>
+            <a href="javaScript:void(0);">PLUS会员</a>
+          </div>
+        </div>
+        <div class="header_main_right_new">
+          <div class="header_new">
+            <div class="header_new_t">
+              <p class="active">
+                <a href="javaScript:void(0);">促销</a>
+              </p>
+              <p>
+                <a href="javaScript:void(0);">公告</a>
+              </p>
+              <a href="javaScript:void(0);">更多</a>
+            </div>
+            <div class="header_new_connter">
+              <div class="header_new_connter_1">
+                <ul>
+                  <li>
+                    <a href="javaScript:void(0);">全民纸巾大作战</a>
+                  </li>
+                  <li>
+                    <a href="javaScript:void(0);">家具建材满999减300元</a>
+                  </li>
+                  <li>
+                    <a href="javaScript:void(0);">黑科技冰箱，下单立减千元</a>
+                  </li>
+                  <li>
+                    <a href="javaScript:void(0);">抢102减101神券！</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="header_new_connter_1" style="display: none;">
+                <ul>
+                  <li>
+                    <a href="javaScript:void(0);">关于召回普利司通（天津）轮胎有限公司2个规格乘用车轮胎的公告</a>
+                  </li>
+                  <li>
+                    <a href="javaScript:void(0);">物流推出配送员统一外呼电话"95056”</a>
+                  </li>
+                  <li>
+                    <a href="javaScript:void(0);">天府大件运营中心开仓公告</a>
+                  </li>
+                  <li>
+                    <a href="javaScript:void(0);">大件物流“送装一体”服务全面升级！</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header_main_right_ser">
+          <div class="ser_box">
+            <ul>
+              <li class="ser_box_item">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/huafei.png" />
+                  <span>话费</span>
+                </a>
+              </li>
+              <li class="ser_box_item">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/jipiao.png" />
+                  <span>机票</span>
+                </a>
+              </li>
+              <li class="ser_box_item">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/jiudian.png" />
+                  <span>酒店</span>
+                </a>
+              </li>
+              <li class="ser_box_item">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/youxi.png" />
+                  <span>游戏</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/qiyegou.png" />
+                  <span>企业购</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/jiayouka.png" />
+                  <span>加油卡</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/dianyingpiao.png" />
+                  <span>电影票</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/huochepiao.png" style="height:20px;" />
+                  <span>火车票</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/zhongchou.png" />
+                  <span>众筹</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/licai.png" style="height:22px;" />
+                  <span>理财</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/lipinka.png" style="height:14px;" />
+                  <span>礼品卡</span>
+                </a>
+              </li>
+              <li class="ser_box_item1">
+                <a href="javaScript:void(0);">
+                  <img src="/static/index/img/baitiao.png" style="height:20px;" />
+                  <span>白条</span>
+                </a>
+              </li>
+            </ul>
+            <div class="ser_box_aaa">
+              <div class="ser_box_aaa_one">
+                <div class="ser_box_aaa_nav">
+                  <ol>
+                    <li class="active">
+                      <a href="javaScript:void(0);">话费</a>
+                    </li>
+                    <li>
+                      <a href="javaScript:void(0);">机票</a>
+                    </li>
+                    <li>
+                      <a href="javaScript:void(0);">酒店</a>
+                    </li>
+                    <li>
+                      <a href="javaScript:void(0);">游戏</a>
+                    </li>
+                  </ol>
+                  <div class="ser_ol">
+                    <div class="ser_ol_li">
+                      <ul>
+                        <div class="guanbi">X</div>
+                        <a class="active">话费充值</a>
+                        <a>流量充值</a>
+                        <a>套餐变更</a>
+                        <div class="ser_ol_div">
+                          <p>号码<input type="text" /></p>
+                          <p style="margin: 10px 0;">面值
+                            <select name="">
+                              <option value="">100元</option>
+                              <option value="">20元</option>
+                              <option value="">50元</option>
+                              <option value="">10元</option>
+                              <option value="">2元</option>
+                            </select>
+                            <span>￥98.0-￥100.0</span></p>
+                        </div>
+                        <button>快速充值</button>
+                        <p class="p">抢99减50元话费</p>
+                      </ul>
+
+                    </div>
+                    <div class="ser_ol_li">
+                      <ul>
+                        <div class="guanbi">X</div>
+                        <a class="active">国际机票</a>
+                        <a>国际/港澳</a>
+                        <a>特惠活动</a>
+                        <div class="ser_ol_div1">
+                          <p>
+                            <input type="radio" name="a" style="vertical-align:middle;" />单程
+                            <input type="radio" name="a" style="vertical-align:middle;" />往返
+                          </p>
+                          <input type="text" placeholder="出发城市" />
+                          <input type="text" placeholder="到达城市" />
+                          <input type="text" placeholder="日期" />
+                        </div>
+                        <button>机票查询</button>
+                        <span class="p">当季热门特惠机票</span>
+                      </ul>
+                    </div>
+                    <div class="ser_ol_li">
+                      <ul>
+                        <div class="guanbi">X</div>
+                        <a class="active" style="width: 50%;">国内港澳台</a>
+                        <a style="width: 50%;">促销活动</a>
+                        <div class="ser_ol_div1">
+                          <input type="text" placeholder="出发城市" style="margin-top: 10px;" />
+                          <input type="text" placeholder="到达城市" />
+                          <input type="text" placeholder="日期" />
+                          <input type="text" placeholder="酒店 商圈 地标" />
+                        </div>
+                        <button>酒店查询</button>
+                        <span class="p">订酒店到</span>
+                      </ul>
+                    </div>
+                    <div class="ser_ol_li">
+                      <ul>
+                        <div class="guanbi">X</div>
+                        <a class="active">点卡</a>
+                        <a>QQ</a>
+                        <a>页游</a>
+                        <div class="ser_ol_div1">
+                          <input type="text" placeholder="游戏" style="margin-top: 15px;" />
+                          <br />面值
+                          <select name="" style="margin: 8px 0;">
+                            <option value="">面值</option>
+                            <option value="">面值</option>
+                            <option value="">面值</option>
+                          </select><span style="color: #C81623;">￥0.00</span>
+                          <p>
+                            <input type="radio" name="a" style="width: 15px;vertical-align:middle;" />直充
+                            <input type="radio" name="a" style="width: 15px;vertical-align:middle;" />卡密
+                          </p>
+                        </div>
+                        <button>快速充值</button>
+                        <span class="p">吃鸡就要快人一步</span>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header_banner1">
+      <a href="javaScript:void(0);" class="a">
+        <img src="/static/index/img/5a1e5ce2N034ce344.png" class="aa" />
+      </a>
+      <div class="header_banner1_div">
+        <p>X</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="section_second">
+  <!-- 第一层 -->
+  <div class="section_second_header">
+    <p class="section_second_header_img"></p>
+    <div class="section_second_header_left">
+      <p></p>
+      <span class="">秒杀</span>
+      <span>总有你想不到的低价</span>
+      <span>
+        </span>
+    </div>
+    <div class="section_second_header_right">
+      <p>当前场次</p>
+      <span class="section_second_header_right_hours">00</span>
+      <span class="section_second_header_right_mao">：</span>
+      <span class="section_second_header_right_minutes">00</span>
+      <span class="section_second_header_right_mao">：</span>
+      <span class="section_second_header_right_second">00</span>
+      <p>后结束</p>
+    </div>
+  </div>
+  <div class="section_second_list">
+    <div class="swiper-container swiper_section_second_list_left">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <!-- 动态拼装秒杀商品信息 -->
+          <ul id="seckillSkuContent">
+            <!--<li>-->
+            <!--<img src="/static/index/img/section_second_list_img1.jpg" alt="">-->
+            <!--<p>花王 (Merries) 妙而舒 纸尿裤 大号 L54片 尿不湿（9-14千克） （日本官方直采） 花王 (Merries) 妙而舒 纸尿裤 大号 L54片 尿不湿（9-14千</p>-->
+            <!--<span>¥83.9</span><s>¥99.9</s>-->
+            <!--</li>-->
+          </ul>
+        </div>
+      </div>
+      <div class="swiper-button-prev second_list">
+        <p></p>
+      </div>
+      <div class="swiper-button-next second_list">
+        <p></p>
+      </div>
+    </div>
+    <ul class="section_second_list_right">
+      <li>
+        <img src="/static/index/img/section_second_list_right_img.jpg" alt="">
+      </li>
+      <li>
+        <img src="/static/index/img/section_second_list_right_img.png" alt="">
+      </li>
+      <div class="section_second_list_right_button">
+        <p class="section_second_list_right_button_active"></p>
+        <p></p>
+      </div>
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+</body>
+<script src="../static/index/js/layui-v2.9.14.min.js"></script>
+<script type="text/javascript">
+  function search() {
+    var keyword=$("#searchText").val()
+    window.location.href="http://search.tmesh.cn/list.html?keyword="+keyword;
+  }
+
+  $.get("http://seckill.tmesh.cn/getCurrentSeckillSkus", function (res) {
+    if (res.data.length > 0) {
+      res.data.forEach(function (item) {
+        $("<li onclick='toDetail(" + item.skuId + ")'></li>").append($("<img style='width: 130px; height: 130px' src='" + item.skuInfo.skuDefaultImg + "' />"))
+                .append($("<p>"+item.skuInfo.skuTitle+"</p>"))
+                .append($("<span>" + item.seckillPrice + "</span>"))
+                .append($("<s>" + item.skuInfo.price + "</s>"))
+                .appendTo("#seckillSkuContent");
+      })
+    }
+  })
+
+  function toDetail(skuId) {
+    location.href = "http://item.tmesh.cn/" + skuId + ".html";
+  }
+
+  function deleteCartItem(id, skuId) {
+    $.ajax({
+      type: 'get',
+      url: 'http://item.tmesh.cn/cart/deleteItem',
+      data: {id:id,skuId:skuId},
+      dataType: 'json',
+      contentType:"application/json",
+      success: function (data) {
+        if (data == true) {
+          $("#"+skuId).remove();
+          var cartCount = $("#cartCount").text();
+          cartCount = Number(cartCount)
+          cartCount--;
+          $("#cartCount").text(cartCount);
+          if ($(".cart_giftlist").length == 0) {
+            $(".header_ko").append("<p>购物车中还没有商品，赶紧选购吧！</p>");
+          }
+          layer.msg('删除成功', {icon: 1})
+        } else {
+          layer.msg('删除失败', {icon: 2})
+        }
+      },
+      error: function (error) {
+        console.log(error);
+        layer.msg('服务器异常，请联系管理员！！！', {icon: 2})
+        layer.close(index);
+      }
+    });
+  }
+
+</script>
+<script type="text/javascript" src="/static/index/js/text.js"></script>
+<script type="text/javascript" src="/static/index/js/header.js"></script>
+<script type="text/javascript" src="/static/index/js/secend.js"></script>
+<script type="text/javascript" src="/static/index/js/zz.js"></script>
+<script type="text/javascript" src="/static/index/js/index.js"></script>
+<script type="text/javascript" src="/static/index/js/left,top.js"></script>
+<script type="text/javascript" src="/static/index/js/catalogLoader.js"></script>
+</html>

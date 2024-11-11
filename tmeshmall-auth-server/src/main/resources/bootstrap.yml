@@ -1,0 +1,65 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 128d3e48-bc25-456b-af78-b568ea9f35d3
+#        group: dev
+        group: frp
+        extension-configs:
+#          如果通过 gateway 访问不能用 192 地址，建议使用 0.0.0.0
+          - data-id: adderss.yml
+            group: dev
+            refresh: true
+
+          - data-id: port.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: nacos.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: springcloud.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+            
+          - data-id: logging.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: feign.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+            
+          - data-id: redis.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: exposure.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: sentinel.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: servlet.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: session.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: sleuth.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: thymeleaf.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: zipkin.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true

@@ -1,0 +1,64 @@
+#server:
+#  port: 30010
+#
+#spring:
+#  application:
+#    name: tmeshmall-cart
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#    sentinel:
+#      transport:
+#        # 应用开启端口，接收dashboard限流规则，如果被占用会默认+1
+#        port: 8719
+#        # 控制台ip:port
+#        dashboard: 127.0.0.1:8858
+#  zipkin:
+#    # zipkin服务器的地址
+#    base-url: http://127.0.0.1:9411/
+#    # 关闭服务发现，否则Springcloud会把zipkin当做服务名称
+#    discovery-client-enabled: false
+#    # 数据传输方式
+#    sender:
+#      type: web
+#  sleuth:
+#    sampler:
+#      rate: 1 # 设置抽样采集率 默认为0.1
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    password: tmesh729
+#
+## 开启feign熔断，开启后能够监控到远程调用资源
+#feign:
+#  sentinel:
+#    enabled: true
+## 审计模块暴露，应用健康情况（配合sentinel dashboard）
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        exclude: '*'
+#
+## 开启日志
+#logging:
+#  group:
+#    tomcat: org.apache.catalina,org.apache.coyote,org.apache.tomcat
+#  level:
+#    com.tmesh.tmeshmall: debug
+#    org.springframework: debug
+#    # feign调用日志，链路日志
+#    org.springframework.cloud.openfeign: debug
+#    org.springframework.cloud.sleuth: debug
+#    root: debug
+#    sql: debug
+#    tomcat: info
+#    web: info
+#  file:
+#    name: ./tmeshmall-logs/cart.log
+#tmeshmall:
+#  thread:
+#    core-size: 20
+#    max-size: 200
+#    keep-alive-time: 10

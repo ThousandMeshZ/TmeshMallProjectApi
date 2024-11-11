@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    alicloud:
+      access-key: xxxxxxxxx
+      secret-key: xxxxxxxxx
+      oss:
+        endpoint: https://oss-cn-shanghai.aliyuncs.com
+        bucket: images

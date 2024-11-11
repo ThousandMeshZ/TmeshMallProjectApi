@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tmesh.tmeshmall.member.dao.MemberReceiveAddressDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.tmesh.tmeshmall.member.entity.MemberReceiveAddressEntity" id="memberReceiveAddressMap">
+        <result property="id" column="id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="postCode" column="post_code"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="region" column="region"/>
+        <result property="detailAddress" column="detail_address"/>
+        <result property="areacode" column="areacode"/>
+        <result property="defaultStatus" column="default_status"/>
+    </resultMap>
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.tmesh.common.vo.member.MemberReceiveAddressVO" id="memberReceiveAddressVO">
+        <result property="id" column="id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="postCode" column="post_code"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="region" column="region"/>
+        <result property="area" column="area"/>
+        <result property="detail" column="detail_address"/>
+        <result property="areacode" column="areacode"/>
+        <result property="LAY_CHECKED" column="LAY_CHECKED"/>
+    </resultMap>
+
+    <resultMap id="mapResult" type="java.util.Map">
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="region" property="region"/>
+        <!-- 更多的列映射 -->
+    </resultMap>
+
+    <select id="getMemberReceiveAddressByMemberIdForTable" resultMap="memberReceiveAddressVO">
+        SELECT id, member_id, name, phone, province,
+               city, region, detail_address, default_status, default_status=1 as LAY_CHECKED,
+               IF ((region is not null and region != ''), CONCAT_WS('\\', province, city, region), IF ((city is not null and city != ''), CONCAT_WS('\\', province, city), IF ((province is not null and province != ''), province, ''))) AS area
+        FROM ums_member_receive_address
+        WHERE member_id = #{memberId}
+    </select>
+
+    <select id="getMemberReceiveAddressByIdForTable" resultMap="memberReceiveAddressVO">
+        SELECT id, member_id, name, phone, province,
+               city, region, detail_address, default_status, default_status=1 as LAY_CHECKED,
+               IF ((region is not null and region != ''), CONCAT_WS('\\', province, city, region), IF ((city is not null and city != ''), CONCAT_WS('\\', province, city), IF ((province is not null and province != ''), province, ''))) AS area
+        FROM ums_member_receive_address
+        WHERE id = #{id}
+    </select>
+
+    <select id="getAddressInfoFromAllAddress" resultMap="mapResult">
+        SELECT
+            REPLACE(GROUP_CONCAT(res.region, ""),",","") AS region,
+            REPLACE(GROUP_CONCAT(res.city, ""),",","") AS city,
+            REPLACE(GROUP_CONCAT(res.province, ""),",","") AS province
+        FROM
+            (
+                SELECT
+                    IF((CONCAT_WS('\\', mra.province, mra.city, mra.region)=addr.all_address), addr.id, "") AS region,
+                    IF((CONCAT_WS('\\', mra.province, mra.city)=addr.all_address), addr.id, "") AS city,
+                    IF((mra.province=addr.all_address), addr.id, "") AS province
+                FROM ums_member_receive_address mra, ums_address addr
+                WHERE
+                    mra.id = #{id} AND
+                    (
+                        (IF((CONCAT_WS('\\', mra.province, mra.city, mra.region)=addr.all_address), addr.id, "") is not null AND IF((CONCAT_WS('\\', mra.province, mra.city, mra.region)=addr.all_address), addr.id, "")!= "")
+                            OR
+                        (IF((CONCAT_WS('\\', mra.province, mra.city)=addr.all_address), addr.id, "") is not null AND IF((CONCAT_WS('\\', mra.province, mra.city)=addr.all_address), addr.id, "")!= "")
+                            OR
+                        (IF((mra.province=addr.all_address), addr.id, "") is not null AND IF((mra.province=addr.all_address), addr.id, "")!= "")
+                    )
+            ) res
+    </select>
+
+
+</mapper>

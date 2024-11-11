@@ -1,0 +1,121 @@
+#server:
+#  address: 0.0.0.0
+#  port: 8084
+#  servlet:
+#    session:
+#      timeout: 30m
+#
+#spring:
+#  application:
+#    name: tmeshmall-product
+#  main:
+#    #    解决升级Spring Boot2.6后,因依赖循环引用导致启动时报错的问题
+#    allow-circular-references: true
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
+#  datasource:
+#    username: tmesh
+#    password: tmesh729
+#    url: jdbc:mysql://127.0.0.1:3306/tmeshmall_pms?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    #hikari数据源特性配置
+#    hikari:
+#      maximum-pool-size: 100 #最大连接数,默认值10.
+#      minimum-idle: 20 #最小空闲连接，默认值10.
+#      connection-timeout: 60000 #连接超时时间(毫秒),默认值30秒.
+#      #空闲连接超时时间，默认值600000(10分钟),只有空闲连接数大于最大连接数且空闲时间超过该值，才会被释放
+#      #如果大于等于 max-lifetime 且 max-lifetime>0,则会被重置为0.
+#      idle-timeout: 600000
+#      max-lifetime: 3000000 #连接最大存活时间,默认值30分钟.设置应该比mysql设置的超时时间短
+#      connection-test-query: select 1 #连接测试查询
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#    alicloud:
+#      access-key: xxxxxxxxx
+#      secret-key: xxxxxxxxx
+#      oss:
+#        endpoint: https://oss-cn-shanghai.aliyuncs.com
+#        bucket: images
+#    sentinel:
+#      # 网关限流时返回code，会被覆盖
+#      scg:
+#        fallback:
+#          response-status=400:
+#      transport:
+#        # 应用开启端口，接收dashboard限流规则，如果被占用会默认+1
+#        port: 8719
+#        # 控制台ip:port
+#        dashboard: 127.0.0.1
+#  zipkin:
+#    # zipkin服务器的地址
+#    base-url: http://127.0.0.1:9411/
+#    # 关闭服务发现，否则Springcloud会把zipkin当做服务名称
+#    discovery-client-enabled: false
+#    # 数据传输方式
+#    sender:
+#      type: web
+#  sleuth:
+#    sampler:
+#      rate: 1 # 设置抽样采集率 默认为0.1
+#  thymeleaf:
+#    cache: false
+#  data:
+#    redis:
+#      host: 127.0.0.1
+#      port: 6379
+#      password: tmesh729
+#  cache:
+#    type: redis # 使用redis作为缓存
+#    redis:
+#      time-to-live: 3600s # 过期时间
+#      # key-prefix: CACHE_ # 会导致自己在@Cacheable里设置的名字失效，所以这里不指定
+#      use-key-prefix: true # key值加前缀
+#      cache-null-values: true # 缓存控制
+#  session:
+#    store-type: redis
+#
+## 开启feign熔断，开启后能够监控到远程调用资源
+#feign:
+#  sentinel:
+#    enabled: true
+## 审计模块暴露，应用健康情况（配合sentinel dashboard）
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        exclude: '*'
+#
+#mybatis-plus:
+#  mapper-locations: classpath:/mapper/**/*.xml
+#  global-config:
+#    db-config:
+#      id-type: auto
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+#
+## 开启日志
+#logging:
+#  group:
+#    tomcat: org.apache.catalina,org.apache.coyote,org.apache.tomcat
+#  level:
+##    com.baomidou.example.mapper: debug
+#    com.tmesh.tmeshmall: debug
+#    org.springframework: debug
+#    # feign调用日志，链路日志
+#    org.springframework.cloud.openfeign: debug
+#    org.springframework.cloud.sleuth: debug
+#    root: debug
+#    sql: debug
+#    tomcat: info
+#    web: info
+#  file:
+#    name: ./tmeshmall-logs/product.log
+#
+#tmeshmall:
+#  thread:
+#    core-size: 20
+#    max-size: 200
+#    keep-alive-time: 10

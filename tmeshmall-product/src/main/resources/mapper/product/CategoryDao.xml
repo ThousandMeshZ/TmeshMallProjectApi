@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tmesh.tmeshmall.product.dao.CategoryDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.tmesh.tmeshmall.product.entity.CategoryEntity" id="categoryMap">
+        <result property="catId" column="cat_id"/>
+        <result property="name" column="name"/>
+        <result property="parentCid" column="parent_cid"/>
+        <result property="catLevel" column="cat_level"/>
+        <result property="showStatus" column="show_status"/>
+        <result property="sort" column="sort"/>
+        <result property="icon" column="icon"/>
+        <result property="productUnit" column="product_unit"/>
+        <result property="productCount" column="product_count"/>
+    </resultMap>
+    
+    <select id="getPeerByCatId" resultMap="categoryMap">
+        SELECT c1.*
+        FROM pms_category c1, (SELECT * FROM pms_category WHERE cat_id = #{catId}) c2 
+        WHERE c1.parent_cid = c2.parent_cid AND c1.cat_level = c2.cat_level
+    </select>
+    
+    <select id="getAllChildrenCatIdList" resultType="java.lang.Long">
+        SELECT c1.*
+        FROM pms_category c1
+        WHERE c1.parent_cid = #{cat_id}
+    </select>
+
+    <select id="getCatalogListByParentCid" resultMap="categoryMap">
+        SELECT c1.*
+        FROM pms_category c1
+        WHERE c1.parent_cid = #{parentCid}
+    </select>
+
+</mapper>

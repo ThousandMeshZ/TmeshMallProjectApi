@@ -1,0 +1,61 @@
+#server:
+#  port: 25000
+#
+#spring:
+#  application:
+#    name: tmeshmall-seckill
+#
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
+#
+#    sentinel:
+#      transport:
+#        #配置sentinel dashboard地址
+#        dashboard: localhost:8080
+#        #默认8719端口，假如被占用会自动从8719开始依次+1扫描，直至找到未被占用的端口
+#        port: 8719
+#
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#
+#
+##开启feign对sentinel的支持
+#feign:
+#  sentinel:
+#    enabled: true
+#
+#  #配置异步任务线程池
+#  task:
+#    execution:
+#      pool:
+#        core-size: 5
+#        max-size: 50
+#
+#  session:
+#    store-type: redis
+## 开启日志
+#logging:
+#  group:
+#    tomcat: org.apache.catalina,org.apache.coyote,org.apache.tomcat
+#  level:
+##    com.baomidou.example.mapper: debug
+#    com.tmesh.tmeshmall: debug
+#    org.springframework: debug
+#    # feign调用日志，链路日志
+#    org.springframework.cloud.openfeign: debug
+#    org.springframework.cloud.sleuth: debug
+#    root: debug
+#    sql: debug
+#    tomcat: info
+#    web: info
+#  file:
+#    name: ./tmeshmall-logs/seckill.log
+##暴露所有端点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'

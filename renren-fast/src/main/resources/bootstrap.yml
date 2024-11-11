@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: renren-fast
+  cloud:
+    inetutils:
+      ignored-interfaces: # 忽略eth*地址,eth0,eth1...
+        - VMware.*
+#      preferred-networks: # 限制网段
+#        - 192.168.10
+#        - 192.168.1
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 1d9eebb7-5c1b-48f8-95df-460fcfd882c5
+#        group: dev
+        group: frp
+        extension-configs:
+          - data-id: adderss.yml
+            group: DEFAULT_GROUP
+            refresh: true
+
+          - data-id: spring.yml
+            group: DEFAULT_GROUP
+            refresh: true
+
+          - data-id: tomcat.yml
+            group: DEFAULT_GROUP
+            refresh: true
+
+          - data-id: datasource.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: mybatis.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: redis.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: nacos.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: springcloud.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true

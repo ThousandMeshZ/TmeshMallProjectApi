@@ -1,0 +1,119 @@
+#server:
+#  address: 0.0.0.0
+#  port: 8083
+#  servlet:
+#    session:
+#      timeout: 30m
+#
+#spring:
+#  application:
+#    name: tmeshmall-order
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
+#  datasource:
+#    username: tmesh
+#    password: tmesh729
+#    url: jdbc:mysql://127.0.0.1:3306/tmeshmall_oms?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#    sentinel:
+#      transport:
+#        # 应用开启端口，接收dashboard限流规则，如果被占用会默认+1
+#        port: 8719
+#        # 控制台ip:port
+#        dashboard: 127.0.0.1
+#  zipkin:
+#    # zipkin服务器的地址
+#    base-url: http://127.0.0.1:9411/
+#    # 关闭服务发现，否则Springcloud会把zipkin当做服务名称
+#    discovery-client-enabled: false
+#    # 数据传输方式
+#    sender:
+#      type: web
+#  sleuth:
+#    sampler:
+#      rate: 1 # 设置抽样采集率 默认为0.1
+#  data:
+#    redis:
+#      host: 127.0.0.1
+#      port: 6379
+#      password: tmesh729
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 25672
+#    # 虚拟主机
+#    virtual-host: /
+#    # 开启发送端发送确认，无论是否到达broker都会触发回调【发送端确认机制+本地事务表】
+#    publisher-confirm-type: correlated
+#    # 开启发送端抵达队列确认，消息未被队列接收时触发回调【发送端确认机制+本地事务表】
+#    publisher-returns: true
+#    # 消息在没有被队列接收时是否强行退回
+#    template:
+#      mandatory: true
+#    # 消费者手动确认模式，关闭自动确认，否则会消息丢失
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#  # 开发期间禁用缓存
+#  thymeleaf:
+#    cache: false
+#
+#mybatis-plus:
+#  mapper-locations: classpath:/mapper/**/*.xml
+#  global-config:
+#    db-config:
+#      id-type: auto
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+#
+## 开启feign熔断，开启后能够监控到远程调用资源
+#feign:
+#  sentinel:
+#    enabled: true
+#
+## 审计模块暴露，应用健康情况（配合sentinel dashboard）
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        exclude: '*'
+#
+# 开启日志
+#logging:
+#  group:
+#    tomcat: org.apache.catalina,org.apache.coyote,org.apache.tomcat
+#  level:
+#    com.tmesh.tmeshmall: debug
+#    org.springframework: debug
+#    # feign调用日志，链路日志
+#    org.springframework.cloud.openfeign: debug
+#    org.springframework.cloud.sleuth: debug
+#    root: debug
+#    sql: debug
+#    tomcat: info
+#    web: info
+#  file:
+#    name: ./tmeshmall-logs/order.log
+
+#tmeshmall:
+#  thread:
+#    core-size: 20
+#    max-size: 200
+#    keep-alive-time: 10
+
+alipaysandbox:
+  appId: 9021000135657613
+  appPrivateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC39VXclTKcTpAOTeDLzuMCXOJpgGGq6ebn2s7Abay7ZcKt9tht05N8ftExDW7MGwrEQpdVME/ptnXK5w7NHc/Piu8JcMWeoRSQzGTtKRAg2PD6HKG0j9sWvgcgB2647GUFMbSBXErQckZs/P61Q5WyJjcckBuhRMToRu+g7oZOWzYO2UUl6rxKanBh9sus3LSA5z5tAdn/ft99/7vpPzslNC4+lc2uRUWhXECBbVzyJrY4oprQhFeVfIiSnTnwxd4ucUcncrt81WFLCRYKYE3FS2oEwVKXHbk+CYU6hAfFrFYoS54iMAr5v5QGiND6UiB70aLuWL3GcEOd4oqZa5/bAgMBAAECggEAHATUJRrccI5Oxr755FEIpo17NtKFDcE+mEXtg8Wwr4JaWqDkaiX1qtquBiijnZbo1ufFoQYQxeoymssCqB9ITbY9nlR85SJnvX5ESRMeD8K7QX0m7BeVKSucbjZzmNr4sAfYFHP4OTOOon8OVJGMtWu4rTMN4kxVKYPUb9CkyD4+JwY6qz/Gm3S3sICchWiuh0UwvETRnX8G7jWKKD+FbSG1Elu32+5jyI8amBsDCrxmg50VjElb+Y0IPjVfQzeidqI0Jb9pLPgueQYov9c1sJmjZuUjepuk5J1Td+g152otTq8ORFxUVo7w5VrPLXHzE0kdti+81UbeTdbuA8C4YQKBgQDecskaWYGTn5JaqWDOwKRKv217OrJ6b3Z2YChpz6u1QGM2WhKa8SJ5eAydMufxnesiW+F5kh/OV2NzBeYbr19mH/HW0zwyBkfNuh7go1qM5mrNwNr7rcfcuC70y9OlZkHVhE54YkEDt4kY2X1gFhnCwkbJN2paRufNIcdgm5VuowKBgQDTtF2tgTRvHIZzCrJ68oy9Qspx9p4B5Q8edFv0CQRf3pSx01xQI2gMqaxLJ845lPpaXP7bJKwH6UkzoF7BTHTWyWPSz7x9JKfaN0p9d9jvmlEYLH8hNwO0M1GcjpnfLTLiEuzCxUC4F4E6YtufdVk7LGGI2C7JIjBNVIcwfPi1aQKBgQDZV+vXu/ZX54SW4oF84Upk4i61RX+XEwr61C8IW2kYuiV1uIIPM2WMq1gfy9pGABb6xi1CnBxJfqbjfrL6/9nFLZccX92jvvEvOBftQo45tvRJvpH3cC8kIC147yIGrCfM1+3Xv6BoYk4oom/WjyFyYmHJPkTCmh7oFYX5hWp24wKBgA3Q5pAtL3PU471cRFubuq2bT0TyuEsdXMg7Bck+UWfESeX1CkA8n0y8Qf9BoMbHPzNogEVi9ksp4VoaLDTnPXTK/dXDMuTj4IRwOU9I5AJ3CrXOKZnMUlSPSNMzxzz2YSy52XO4lcmt1wQtcXHNob4n3lGk8iC0N3zEeHIkpcKJAoGAJ9zF3z9LsNSpO5Y5+A2TaT3+elhYHt+ZyUJfYDFPfENMZKM4Sg7fpQU1jrgK4fyL7TvCUCuUkRbDKzDfAcg+vydRYFfeR9nbMAsG5xH3H9LwDkiGIKZF0+bf2IF17LmWrnAJFPWsFraKHrjqmNYjEfP2w2oYZV1LgeFz6yyJfEA=
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgrXmSseJ+smPs22P00Be2GMTHmKPjZgrtoXDeBmZjXf/PNRLRO0FAced7QxZ4B7iDbRqE4kO7Ed2lcYAp9RVM3ulEw5gkJXmZaBfL8GErEmZl0M6NTvT0aVqJkw3JLrnrSyPTtGHedI1WgA8gFgWViLS/gskEgZKvP3gPjsO6Z14SY3ue5p/H0zLVjKnpPvOyKNJtAZAzhjLfdf2Scc6Ut/w+Yp6JfhQkmBG5w2XktZslAW3SEGD6EHQRs7pUPRvDJB/LK4+Al2b0R/aVW6jEOteYueJCz/lYRUVqJEYYnIdORa0YQFHO96pSZ5KCLwAKNSJz68dmBEqd/fHqa6IIwIDAQAB
+#  notifyUrl:  http://order.tmesh.cn/alipay/notify
+#  returnUrl:  http://order.tmesh.cn/alipay/return
+  notifyUrl: http://jnhhjq.natappfree.cc/alipay/notify
+  returnUrl: http://jnhhjq.natappfree.cc/alipay/return
+  signType: RSA2
+  format: JSON
+  charset: utf-8
+  gatewayUrl: https://openapi-sandbox.dl.alipaydev.com/gateway.do

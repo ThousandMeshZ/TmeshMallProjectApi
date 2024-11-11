@@ -1,0 +1,54 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 8f5dffdd-163d-415c-9e80-33680ef6556b
+#        group: dev
+        group: frp
+        extension-configs:
+          - data-id: adderss.yml
+#          - data-id: tmesh-address.yml
+#          - data-id: tmesh-new-address.yml
+            group: dev
+            refresh: true
+
+          - data-id: port.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: nacos.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: springcloud.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: logging.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+#          - data-id: routes.yml
+#            group: ${spring.cloud.nacos.config.group}
+#            refresh: true
+
+          - data-id: sentinel.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: feign.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: exposure.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: zipkin.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true
+
+          - data-id: sleuth.yml
+            group: ${spring.cloud.nacos.config.group}
+            refresh: true

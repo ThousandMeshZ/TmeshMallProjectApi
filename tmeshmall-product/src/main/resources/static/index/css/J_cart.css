@@ -1,0 +1,93 @@
+.cart_bd {
+    background: #fff;
+    height: auto !important;
+    height: 344px;
+    max-height: 344px;
+    overflow-y: auto;
+}
+
+.cart_bd, .cart_ft, .cart_head, .clear, .clr, .m, .mb, .mc, .mt, .p-img, .p-market, .p-name, .p-price, .sm {
+    overflow: hidden;
+}
+
+.cart_giftlist, .cart_manjianlist, .cart_manzenglist, .cart_singlelist, .cart_suitlist {
+    margin-top: -1px;
+}
+
+.cart_item {
+    line-height: 17px;
+    vertical-align: bottom;
+    background: #fff;
+}
+
+.cart_item_hd, .cart_item_inner {
+    padding: 8px 10px;
+    border-top: 1px dotted #ccc;
+    overflow: hidden;
+}
+
+.cart_img {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.cart_img_lk {
+    display: block;
+}
+
+.cart_name {
+    float: left;
+    width: 120px;
+    height: 52px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.cart_info {
+    float: right;
+    text-align: right;
+    width: 85px;
+}
+
+.cart_price {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.cart_delete, .cart_price, .cart_tag {
+    float: right;
+    clear: both;
+    max-width: 85px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.cart_gift {
+    height: 17px;
+    clear: both;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cart_gift_lk {
+    color: #999;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    /*margin-block-start: 1em;*/
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
